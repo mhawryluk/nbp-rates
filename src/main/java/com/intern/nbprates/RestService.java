@@ -4,7 +4,9 @@ import org.springframework.web.client.RestTemplate;
 
 import org.springframework.stereotype.Service;
 import java.time.format.DateTimeFormatter;
+import java.util.Currency;
 import java.time.LocalDateTime;
+import java.math.BigDecimal;
 
 @Service
 public class RestService {
@@ -25,6 +27,11 @@ public class RestService {
 
         return this.restTemplate.getForObject(url, GoldResponse[].class);
     }
+
+    public ExchangeRateResponse getExchangeRates(Currency currencyCode) {
+        String url = "http://api.nbp.pl/api/exchangerates/rates/a/" + currencyCode + "/last/5";
+        return this.restTemplate.getForObject(url, ExchangeRateResponse.class);
+    }
 }
 
 class GoldResponse {
@@ -35,4 +42,15 @@ class GoldResponse {
     public String toString() {
         return "" + data + ": " + cena;
     }
+}
+
+class ExchangeRateResponse {
+    public String currency;
+    public Currency code;
+    public Rate[] rates;
+}
+
+class Rate {
+    public String effectiveDate;
+    public BigDecimal mid;
 }

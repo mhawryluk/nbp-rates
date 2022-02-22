@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PathVariable;
+import java.util.Currency;
 
 @SpringBootApplication
 @RestController
@@ -17,8 +18,8 @@ public class NbpRatesApplication {
 	}
 
 	@GetMapping("/api/exchange-rates/{currencyCode}")
-	public String exchangeRates(@PathVariable String currencyCode) {
-		return "currencyCode: " + currencyCode;
+	public ExchangeRateResponse exchangeRates(@PathVariable Currency currencyCode) {
+		return restService.getExchangeRates(currencyCode);
 	}
 
 	@GetMapping("/api/gold-price/average")
