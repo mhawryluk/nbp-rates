@@ -30,7 +30,7 @@ public class NbpRatesApplication {
 		BigDecimal sum = new BigDecimal(0);
 		GoldResponse[] response = restService.getGoldPrices();
 		for (GoldResponse entry : response) {
-			sum = sum.add(entry.cena);
+			sum = sum.add(entry.getPrice());
 		}
 		return sum.divide(new BigDecimal(response.length), 4, RoundingMode.HALF_UP);
 	}

@@ -1,8 +1,9 @@
 package com.intern.nbprates;
 
 import org.springframework.web.client.RestTemplate;
-
 import org.springframework.stereotype.Service;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Currency;
 import java.math.BigDecimal;
 
@@ -27,16 +28,67 @@ public class RestService {
 }
 
 class GoldResponse {
-    public BigDecimal cena;
+    private BigDecimal price;
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    @JsonProperty("cena")
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
 }
 
 class ExchangeRateResponse {
-    public String currency;
-    public Currency code;
-    public Rate[] rates;
+    private String currency;
+    private Currency code;
+    private Rate[] rates;
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public Currency getCode() {
+        return code;
+    }
+
+    public Rate[] getRates() {
+        return rates;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
+    public void setCode(Currency code) {
+        this.code = code;
+    }
+
+    public void setRates(Rate[] rates) {
+        this.rates = rates;
+    }
 }
 
 class Rate {
-    public String effectiveDate;
-    public BigDecimal mid;
+    private String effectiveDate;
+    private BigDecimal mid;
+
+    public String getEffectiveDate() {
+        return effectiveDate;
+    }
+
+    @JsonProperty("rate")
+    public BigDecimal getMid() {
+        return mid;
+    }
+
+    public void setEffectiveDate(String effectiveDate) {
+        this.effectiveDate = effectiveDate;
+    }
+
+    @JsonProperty("mid")
+    public void setMid(BigDecimal mid) {
+        this.mid = mid;
+    }
 }
