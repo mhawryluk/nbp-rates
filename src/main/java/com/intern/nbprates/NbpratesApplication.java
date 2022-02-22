@@ -5,6 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PathVariable;
+
+import java.math.RoundingMode;
+import java.math.BigDecimal;
 import java.util.Currency;
 
 @SpringBootApplication
@@ -23,12 +26,12 @@ public class NbpRatesApplication {
 	}
 
 	@GetMapping("/api/gold-price/average")
-	public double goldPrice() {
-		double sum = 0;
+	public BigDecimal goldPrice() {
+		BigDecimal sum = new BigDecimal(0);
 		GoldResponse[] response = restService.getGoldPrices();
-		for (var entry : response) {
-			sum += entry.cena;
+		for (GoldResponse entry : response) {
+			sum = sum.add(entry.cena);
 		}
-		return sum / response.length;
+		return sum.divide(new BigDecimal(response.length), 4, RoundingMode.HALF_UP);
 	}
 }
