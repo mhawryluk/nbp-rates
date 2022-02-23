@@ -12,7 +12,7 @@
 	<artifactId>nbprates</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>nbprates</name>
-	<description>Demo project for Spring Boot</description>
+	<description>API for gold prices and currency exchange rates.</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -27,6 +27,12 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+    		<groupId>com.fasterxml.jackson.core</groupId>
+    		<artifactId>jackson-annotations</artifactId>
+		</dependency>
+		
 	</dependencies>
 
 	<build>

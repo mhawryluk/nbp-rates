@@ -74,6 +74,7 @@ class Rate {
     private String effectiveDate;
     private BigDecimal mid;
 
+    @JsonProperty("date")
     public String getEffectiveDate() {
         return effectiveDate;
     }
@@ -83,6 +84,7 @@ class Rate {
         return mid;
     }
 
+    @JsonProperty("effectiveDate")
     public void setEffectiveDate(String effectiveDate) {
         this.effectiveDate = effectiveDate;
     }
